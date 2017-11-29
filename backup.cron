@@ -1,0 +1,26 @@
+# minute (0-59), hour (0-23, 0 = midnight), day (1-31), month (1-12), weekday (0-6, 0 = Sunday), command
+
+# Test
+# */1 * * * * cd /opt/backup && ./backup.sh test >> /var/log/cron.log 2>&1
+
+# 7 days retention
+0 0 * * 0 cd /opt/backup && ./backup.sh day_0 >> /var/log/cron.log 2>&1
+0 0 * * 1 cd /opt/backup && ./backup.sh day_1 >> /var/log/cron.log 2>&1
+0 0 * * 2 cd /opt/backup && ./backup.sh day_2 >> /var/log/cron.log 2>&1
+0 0 * * 3 cd /opt/backup && ./backup.sh day_3 >> /var/log/cron.log 2>&1
+0 0 * * 4 cd /opt/backup && ./backup.sh day_4 >> /var/log/cron.log 2>&1
+0 0 * * 5 cd /opt/backup && ./backup.sh day_5 >> /var/log/cron.log 2>&1
+0 0 * * 6 cd /opt/backup && ./backup.sh day_6 >> /var/log/cron.log 2>&1
+
+# 4 weekly retention
+0 1 1  * * cd /opt/backup && ./backup.sh week_0 >> /var/log/cron.log 2>&1
+0 1 7  * * cd /opt/backup && ./backup.sh week_1 >> /var/log/cron.log 2>&1
+0 1 14 * * cd /opt/backup && ./backup.sh week_2 >> /var/log/cron.log 2>&1
+0 1 21 * * cd /opt/backup && ./backup.sh week_3 >> /var/log/cron.log 2>&1
+
+# 3 monthly retention
+0 2 1 1,4,7,10 * cd /opt/backup && ./backup.sh month_0 >> /var/log/cron.log 2>&1
+0 2 1 2,5,8,11 * cd /opt/backup && ./backup.sh month_1 >> /var/log/cron.log 2>&1
+0 2 1 3,6,9,12 * cd /opt/backup && ./backup.sh month_2 >> /var/log/cron.log 2>&1
+
+# A blank line here for it to be a valid cron file
